@@ -88,6 +88,7 @@ public class HomeFragment extends Fragment
             @Override
             public void onStopTrackingTouch(SeekBar seekBar)
             {
+                System.out.println();
             }
         });
 
