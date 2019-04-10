@@ -1,4 +1,7 @@
 package com.whitney.moodcal3;
+
+import java.util.Date;
+
 public class Entry
 {
     private Mood mood;
@@ -8,9 +11,11 @@ public class Entry
     private int mCycle;
     private boolean mCycleBool;
     private String note;
+    private Date date;
 
     public Entry()
     {
+        date = new Date();
         mood = new Mood(0);
         energyLevel = 0;
         sleepDuration = 0;
@@ -82,6 +87,16 @@ public class Entry
     public String getNote()
     {
         return note;
+    }
+
+    public void setDate(Date date)
+    {
+        this.date = date;
+    }
+
+    public Date getDate()
+    {
+        return date;
     }
 }
 
