@@ -51,7 +51,7 @@ public class CommonFactorsFragment extends Fragment
         sadMedication = v.findViewById(R.id.SadMedication);
         sadMenstruation = v.findViewById(R.id.SadMenstruation);
 
-        if (commonFactors.enoughData())
+        if (commonFactors.enoughData()) //if there are enough data to do analysis
         {
             HashMap<String, Object> sadCommonFactors = commonFactors.getSadCommonFactors();
             HashMap<String, Object> happyCommonFactors = commonFactors.getHappyCommonFactors();

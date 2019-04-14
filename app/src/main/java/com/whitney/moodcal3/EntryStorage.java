@@ -8,35 +8,35 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class EntryStorage
 {
-    private HashMap<String, Entry> entryStorage;
+    private LinkedHashMap<String, Entry> entryStorage;
     private int daySinceLastMenstruation;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+//    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     public EntryStorage()
     {
-        //entryStorage = new HashMap<>();
+        entryStorage = new LinkedHashMap<>();
         daySinceLastMenstruation = 0;
-        mDatabase.child(user.getUid()).child("calendar").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                EntryStorage temp;
-                temp = dataSnapshot.getValue(EntryStorage.class);
-                entryStorage = temp.getEntryStorage();
-                daySinceLastMenstruation = temp.getDaySinceLastMenstruation();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+//        mDatabase.child(user.getUid()).child("calendar").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                EntryStorage temp;
+//                temp = dataSnapshot.getValue(EntryStorage.class);
+//                entryStorage = temp.getEntryStorage();
+//                daySinceLastMenstruation = temp.getDaySinceLastMenstruation();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//            }
+//        });
     }
 
-    public HashMap<String, Entry> getEntryStorage()
+    public LinkedHashMap<String, Entry> getEntryStorage()
     {
         return entryStorage;
     }
@@ -50,5 +50,9 @@ public class EntryStorage
     public void firstMenstruationDay()
     {
         daySinceLastMenstruation = 0;
+    }
+
+    public Iterable entrySet() {
+        return null;
     }
 }

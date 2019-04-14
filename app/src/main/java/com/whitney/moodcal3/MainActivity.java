@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.google.firebase.FirebaseApp;
-
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener
 {
     EntryStorage entryStorage;
@@ -16,7 +14,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        FirebaseApp.initializeApp(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -49,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         {
             case R.id.navigation_home: //the item id is home page
                 fragment = new HomeFragment(); //the fragment will be a HomeFragment
-                ((HomeFragment) fragment).setEntryStorage(entryStorage);
+                ((HomeFragment) fragment).setEntryStorage(entryStorage); //transfer the same storage to this fragment
                 break;
 
             case R.id.navigation_analysis:
