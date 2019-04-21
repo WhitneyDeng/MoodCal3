@@ -14,6 +14,8 @@ public class EntryStorage
 {
     private LinkedHashMap<String, Entry> entryStorage;
     private int daySinceLastMenstruation;
+
+    //preserved for firebase integration
 //    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -21,6 +23,8 @@ public class EntryStorage
     {
         entryStorage = new LinkedHashMap<>();
         daySinceLastMenstruation = 0;
+
+        //this section is preserved for firebase integration
 //        mDatabase.child(user.getUid()).child("calendar").addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -50,9 +54,5 @@ public class EntryStorage
     public void firstMenstruationDay()
     {
         daySinceLastMenstruation = 0;
-    }
-
-    public Iterable entrySet() {
-        return null;
     }
 }

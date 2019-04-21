@@ -14,9 +14,7 @@ import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Pie;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 
 public class AnalysisFragment extends Fragment
@@ -24,27 +22,29 @@ public class AnalysisFragment extends Fragment
     EntryStorage entryStorage;
     Analysis analysis;
 
+    public static final int NUMBER_OF_MOOD_TYPES = 5;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.analysis, container, false);
 
-        //Line Graph
+        //Line Graph (for future development)
 
         //Pie Chart
         Pie pie = AnyChart.pie();
 
         List<DataEntry> data = new ArrayList<>();
-        data.add(new ValueDataEntry("1", analysis.findNoOfSelectedMood(1)));
-        data.add(new ValueDataEntry("2", analysis.findNoOfSelectedMood(2)));
-        data.add(new ValueDataEntry("3", analysis.findNoOfSelectedMood(3)));
-        data.add(new ValueDataEntry("4", analysis.findNoOfSelectedMood(4)));
-        data.add(new ValueDataEntry("5", analysis.findNoOfSelectedMood(5)));
+        for (int count = 1; count <= NUMBER_OF_MOOD_TYPES; count++)
+        {
+            String key = Integer.toString(count);
+            data.add(new ValueDataEntry(key, analysis.findNoOfSelectedMood(count)));
+        }
 
         pie.data(data);
 
-        AnyChartView anyChartView = v.findViewById(R.id.any_chart_view);
+        AnyChartView anyChartView = v.findViewById(R.id.any_chart_view_pie);
         anyChartView.setChart(pie);
 
         return v;
@@ -53,5 +53,6 @@ public class AnalysisFragment extends Fragment
     public void setEntryStorage(EntryStorage es)
     {
         entryStorage = es;
+        analysis = new Analysis(es);
     }
 }

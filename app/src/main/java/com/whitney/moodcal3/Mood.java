@@ -4,9 +4,8 @@ import android.graphics.drawable.Drawable;
 
 public class Mood
 {
-    //    private String mood;
     private int moodValue;
-    private String colour;
+    private String colour; //future dev
 
     public Mood(int mv)
     {
@@ -14,7 +13,7 @@ public class Mood
         setColour(mv);
     }
 
-    //resets the colour depending on the mood value
+    //resets the colour depending on the mood value (future development)
     private void setColour(int mv)
     {
         switch (mv)

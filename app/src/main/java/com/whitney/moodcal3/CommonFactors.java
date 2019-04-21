@@ -11,13 +11,17 @@ public class CommonFactors
     private ArrayList<Entry> happyEntries;
     private ArrayList<Entry> sadEntries;
 
+    public static final int SAD_MOOD_VALUE_CUTOFF = 3;
+    public static final int ZERO = 0;
+    public static final int NOT_ENOUGH_DATA_CUTOFF = 10;
+
     public CommonFactors(EntryStorage es)
     {
         entryStorage = es;
-        sadCommonFactors = new HashMap<String, Object>();
-        happyCommonFactors = new HashMap<String, Object>();
-        happyEntries = new ArrayList<Entry>();
-        sadEntries = new ArrayList<Entry>();
+        sadCommonFactors = new HashMap<>();
+        happyCommonFactors = new HashMap<>();
+        happyEntries = new ArrayList<>();
+        sadEntries = new ArrayList<>();
 
         createEntryLists();
     }
@@ -29,7 +33,7 @@ public class CommonFactors
 
         for (Entry currentEntry : entries)
         {
-            if (currentEntry.getMood().getMoodValue() < 3) //moodvalue < 3 is sad
+            if (currentEntry.getMood().getMoodValue() < SAD_MOOD_VALUE_CUTOFF) //moodvalue < 3 is sad
             {
                 sadEntries.add(currentEntry);
             }
@@ -66,8 +70,8 @@ public class CommonFactors
     //reusable code; finds the average int
     private int findAverageInt(ArrayList<Integer> intList)
     {
-        int count = 0;
-        int sum = 0;
+        int count = ZERO;
+        int sum = ZERO;
 
         for (Integer integer: intList)
         {
@@ -75,7 +79,7 @@ public class CommonFactors
             count++;
         }
 
-        if (count == 0) //to prevent mathematical error of dividing by 0
+        if (count == ZERO) //to prevent mathematical error of dividing by 0 when the list is empty
         {
             count = 1;
         }
@@ -85,12 +89,12 @@ public class CommonFactors
     //reusable code; finds most common boolean
     private boolean findAverageBoolean(ArrayList<Boolean> boolList)
     {
-        int trueCount = 0;
-        int falseCount = 0;
+        int trueCount = ZERO;
+        int falseCount = ZERO;
 
         for (Boolean bool: boolList)
         {
-            if (bool == true)
+            if (bool)
             {
                 trueCount++;
             }
@@ -127,9 +131,9 @@ public class CommonFactors
     //returns false if insufficient data
     public boolean enoughData()
     {
-        if (entryStorage.getEntryStorage().size() < 10) //todo need static final for int 10
+        if (entryStorage.getEntryStorage().size() < NOT_ENOUGH_DATA_CUTOFF)
         {
-//            return false; //todo change it back to false
+            return false;
         }
         return true;
     }

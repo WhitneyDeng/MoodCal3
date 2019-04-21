@@ -30,8 +30,9 @@ import java.util.Date;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class HomeFragment extends Fragment
 {
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    //preserved for firebase integration
+//    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     private TextView myDate;
     private CalendarView calender;
@@ -87,7 +88,9 @@ public class HomeFragment extends Fragment
                 checkEntryExistence();
                 Mood newMood = new Mood(i);
                 entryStorage.getEntryStorage().get(date).setMood(newMood);
-                mDatabase.child(user.getUid()).child("calendar").setValue(entryStorage);
+
+                //preserved for firebase integration
+//                mDatabase.child(user.getUid()).child("calendar").setValue(entryStorage);
             }
 
             @Override
@@ -187,7 +190,6 @@ public class HomeFragment extends Fragment
             {
             }
         });
-
         return v;
     }
 
@@ -204,7 +206,6 @@ public class HomeFragment extends Fragment
         {
             entryStorage.firstMenstruationDay();
         }
-
         return entryStorage.getDaySinceLastMenstruation();
     }
 

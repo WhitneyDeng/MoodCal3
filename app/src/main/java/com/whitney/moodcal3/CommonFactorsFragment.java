@@ -21,6 +21,7 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CommonFactorsFragment extends Fragment
 {
@@ -41,6 +42,8 @@ public class CommonFactorsFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.commonfactors, container, false);
+        HashMap<String, TextView> happyFactorsHashMap = new HashMap<>();
+        HashMap<String, TextView> sadFactorsHashMap = new HashMap<>();
 
         commonFactors = new CommonFactors(entryStorage);
 
@@ -51,28 +54,50 @@ public class CommonFactorsFragment extends Fragment
         sadMedication = v.findViewById(R.id.SadMedication);
         sadMenstruation = v.findViewById(R.id.SadMenstruation);
 
-        if (commonFactors.enoughData()) //if there are enough data to do analysis
+        happyFactorsHashMap.put("Sleep Duration", happySleepDuration);
+        happyFactorsHashMap.put("Medication", happyMedication);
+        happyFactorsHashMap.put("Menstrual Cycle", happyMenstruation);
+        sadFactorsHashMap.put("Sleep Duration", sadSleepDuration);
+        sadFactorsHashMap.put("Medication", sadMedication);
+        sadFactorsHashMap.put("Menstrual Cycle", sadMenstruation);
+
+        HashMap<String, TextView> hashMapInUse = new HashMap<>();
+        HashMap<String, Object> commonFactorSourceInUse = new HashMap<>();
+
+        for (int countMap = 1; countMap <= 2; countMap++) //1st time happy, 2nd time sad
         {
-            HashMap<String, Object> sadCommonFactors = commonFactors.getSadCommonFactors();
-            HashMap<String, Object> happyCommonFactors = commonFactors.getHappyCommonFactors();
+            switch (countMap)
+            {
+                case 1: // set textview of happy factors
+                    hashMapInUse = happyFactorsHashMap;
+                    commonFactorSourceInUse = commonFactors.getHappyCommonFactors();
+                    break;
+                case 2: // set textview of sad factors
+                    hashMapInUse = sadFactorsHashMap;
+                    commonFactorSourceInUse = commonFactors.getSadCommonFactors();
+            }
 
-            happySleepDuration.setText(happyCommonFactors.get("Sleep Duration").toString());
-            happyMedication.setText(medicationStatus((boolean) happyCommonFactors.get("Medication")));
-            happyMenstruation.setText(happyCommonFactors.get("Menstrual Cycle").toString());
+            for (Map.Entry<String, TextView> entry : hashMapInUse.entrySet())
+            {
+                String key = entry.getKey();
+                TextView value = entry.getValue();
 
-            sadSleepDuration.setText(sadCommonFactors.get("Sleep Duration").toString());
-            sadMedication.setText(medicationStatus((boolean) sadCommonFactors.get("Medication")));
-            sadMenstruation.setText(sadCommonFactors.get("Menstrual Cycle").toString());
-        }
-        else
-        {
-            happySleepDuration.setText(NOT_ENOUGH_DATA_MESSAGE);
-            happyMedication.setText(NOT_ENOUGH_DATA_MESSAGE);
-            happyMenstruation.setText(NOT_ENOUGH_DATA_MESSAGE);
-
-            sadSleepDuration.setText(NOT_ENOUGH_DATA_MESSAGE);
-            sadMedication.setText(NOT_ENOUGH_DATA_MESSAGE);
-            sadMenstruation.setText(NOT_ENOUGH_DATA_MESSAGE);
+                if (commonFactors.enoughData())//if there are enough data to do analysis
+                {
+                    if (key.equals("Medication")) //future dev: this can check for bool object type in commonFactorSourceInUse
+                    {
+                        value.setText(medicationStatus((boolean) commonFactorSourceInUse.get(key)));
+                    }
+                    else
+                    {
+                        value.setText(commonFactorSourceInUse.get(key).toString());
+                    }
+                }
+                else //if not enough data
+                {
+                    value.setText(NOT_ENOUGH_DATA_MESSAGE);
+                }
+            }
         }
         return v;
     }
