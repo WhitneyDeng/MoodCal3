@@ -1,11 +1,16 @@
 package com.whitney.moodcal3;
 
-import android.graphics.drawable.Drawable;
+/**
+ * This program stores the data of a mood
+ * @author  Whitney Deng
+ * @version 1.0
+ * @since   4-5-2019
+ */
 
 public class Mood
 {
     private int moodValue;
-    private String colour; //future dev
+    private String colour; //future development
 
     public Mood(int mv)
     {
@@ -13,19 +18,18 @@ public class Mood
         setColour(mv);
     }
 
-    //resets the colour depending on the mood value (future development)
+    /**
+     * This method resets the colour depending on the mood value (future development)
+     *
+     * @param mv the mood value
+     */
+    //resets the colour depending on the mood value (unfinished) (future development)
     private void setColour(int mv)
     {
         switch (mv)
         {
             case 1:
         }
-    }
-
-    public void setMoodValue(int mv)
-    {
-        moodValue = mv;
-        setColour(mv);
     }
 
     public int getMoodValue()
