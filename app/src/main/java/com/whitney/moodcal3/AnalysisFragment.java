@@ -16,6 +16,13 @@ import com.anychart.charts.Pie;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This program generates the Analysis fragment interface.
+ *
+ * @author  Whitney Deng
+ * @version 1.0
+ * @since   4-5-2019
+ */
 
 public class AnalysisFragment extends Fragment
 {
@@ -36,13 +43,13 @@ public class AnalysisFragment extends Fragment
         Pie pie = AnyChart.pie();
 
         List<DataEntry> data = new ArrayList<>();
-        for (int count = 1; count <= NUMBER_OF_MOOD_TYPES; count++)
+        for (int count = 1; count <= NUMBER_OF_MOOD_TYPES; count++) //loops through the mood types
         {
-            String key = Integer.toString(count);
-            data.add(new ValueDataEntry(key, analysis.findNoOfSelectedMood(count)));
+            String key = Integer.toString(count); //the key is the moodValue
+            data.add(new ValueDataEntry(key, analysis.findNoOfSelectedMood(count))); //the value is the number of entries with the mood value
         }
 
-        pie.data(data);
+        pie.data(data); //enters the data into the pie chart
 
         AnyChartView anyChartView = v.findViewById(R.id.any_chart_view_pie);
         anyChartView.setChart(pie);
@@ -50,6 +57,11 @@ public class AnalysisFragment extends Fragment
         return v;
     }
 
+    /**
+     * This method sets the entry storage (this was for the firebase integration)
+     *
+     * @param es the entry storage to be assigned
+     */
     public void setEntryStorage(EntryStorage es)
     {
         entryStorage = es;

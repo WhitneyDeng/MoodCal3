@@ -1,10 +1,19 @@
 package com.whitney.moodcal3;
 
+//this section is preserved for future development
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+/**
+ * This program provides the analysis for the pie chart in the Analysis tab
+ *
+ * @author  Whitney Deng
+ * @version 1.0
+ * @since   4-5-2019
+ */
 
 public class Analysis
 {
@@ -17,9 +26,15 @@ public class Analysis
         entryLinkedHashMap = entryStorage.getEntryStorage();
     }
 
+    /**
+     * This method finds the number of entries with the inputted mood
+     *
+     * @param moodValue method counts the number of entries with this mood value
+     *
+     * @return int of the number of entries with the inputted moodValue (mood)
+     */
     public int findNoOfSelectedMood (int moodValue)
     {
-        System.out.println(entryLinkedHashMap.size()); //todo delete testing
         int count = 0;
 
         //this section is preserved for future development (limiting the number of datapoints to the last 30 days)

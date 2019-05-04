@@ -3,6 +3,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+/**
+ * This program analyses and provides the common factors that triggers a positive or negative emotion
+ * for the table in the Common Factor tab
+ *
+ * @author  Whitney Deng
+ * @version 1.0
+ * @since   4-5-2019
+ */
+
 public class CommonFactors
 {
     private EntryStorage entryStorage;
@@ -26,7 +35,9 @@ public class CommonFactors
         createEntryLists();
     }
 
-    //sorts through the entries and sort them into sad and happy list
+    /**
+     * This method sorts through the entries and sort them into sad and happy list
+     */
     private void createEntryLists()
     {
         Collection<Entry> entries = entryStorage.getEntryStorage().values();
@@ -44,7 +55,16 @@ public class CommonFactors
         }
     }
 
-    //reusable code, finds the common factors that leads to a mood
+    /**
+     * This method is reusable. It extracts the data for each factor from the entryArrayList and
+     * inputs them into the respective ArrayLists. Finally, it puts the categorised ArrayLists into
+     * their analysis methods and puts the analysed ArrayLists into a HashMap that stores the factor
+     * in correspondence to it's analysed data (e.g. key: sleep duration; value: 5 (hours)).
+     *
+     * @param entryArrayList is an ArrayList of entries
+     *
+     * @return HashMap of the factors and their corresponding data
+     */
     private HashMap<String, Object> findCommonFactors(ArrayList<Entry> entryArrayList)
     {
         ArrayList<Integer> sleepDuration = new ArrayList<>();
@@ -67,7 +87,13 @@ public class CommonFactors
         return commonFactors;
     }
 
-    //reusable code; finds the average int
+    /**
+     * This method is reusable. It finds the average int
+     *
+     * @param intList method returns the average of the values in this list
+     *
+     * @return int of the average value
+     */
     private int findAverageInt(ArrayList<Integer> intList)
     {
         int count = ZERO;
@@ -86,7 +112,13 @@ public class CommonFactors
         return sum/count;
     }
 
-    //reusable code; finds most common boolean
+    /**
+     * This method is reusable. It finds most common boolean
+     *
+     * @param boolList method returns the most common boolean in this List
+     *
+     * @return boolean of the most common boolean
+     */
     private boolean findAverageBoolean(ArrayList<Boolean> boolList)
     {
         int trueCount = ZERO;
@@ -114,21 +146,33 @@ public class CommonFactors
         }
     }
 
-    //returns Hashmap of factors causing sadness
+    /**
+     * This method returns Hashmap of factors causing sadness
+     *
+     * @return HashMap of factors causing sadness
+     */
     public HashMap<String, Object> getSadCommonFactors()
     {
         sadCommonFactors = findCommonFactors(sadEntries);
         return sadCommonFactors;
     }
 
-    //returns Hashmap of factors causing happiness
+    /**
+     * This method returns Hashmap of factors causing happiness
+     *
+     * @return HashMap of factors causing happiness
+     */
     public HashMap<String, Object> getHappyCommonFactors()
     {
         happyCommonFactors = findCommonFactors(happyEntries);
         return happyCommonFactors;
     }
 
-    //returns false if insufficient data
+    /**
+     * This method assesses whether there is enough data (more than 10 entries)
+     *
+     * @return boolean of whether there is enough data
+     */
     public boolean enoughData()
     {
         if (entryStorage.getEntryStorage().size() < NOT_ENOUGH_DATA_CUTOFF)

@@ -7,6 +7,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+/**
+ * This program creates the main activity (fragment container) and loads the different fragments
+ * when tabs on the bottom navigation view is pressed
+ *
+ * @author  Whitney Deng
+ * @version 1.0
+ * @since   4-5-2019
+ */
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener
 {
     EntryStorage entryStorage;
@@ -24,6 +33,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         loadFragment(new HomeFragment()); //default fragment loaded
     }
 
+    /**
+     * This method loads a fragment into the fragment container
+     *
+     * @param fragment the fragment to be loaded into the container
+     *
+     * @return boolean of whether the fragment exists
+     */
     private boolean loadFragment(Fragment fragment)
     {
         if (fragment != null)
@@ -42,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     {
         Fragment fragment = null;
 
-        switch (menuItem.getItemId())
+        switch (menuItem.getItemId()) //checks which tab was selected
         {
             case R.id.navigation_home: //the item id is home page
                 fragment = new HomeFragment(); //the fragment will be a HomeFragment

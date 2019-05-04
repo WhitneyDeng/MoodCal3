@@ -1,6 +1,12 @@
 package com.whitney.moodcal3;
 
-import java.util.Date;
+/**
+ * This program stores the data of an entry (e.g. sleep duration, mood)
+ *
+ * @author  Whitney Deng
+ * @version 1.0
+ * @since   4-5-2019
+ */
 
 public class Entry
 {
@@ -11,11 +17,9 @@ public class Entry
     private int mCycle;
     private boolean mCycleBool;
     private String note;
-    private Date date;
 
     public Entry()
     {
-        date = new Date();
         mood = new Mood(0);
         energyLevel = 0;
         sleepDuration = 0;
@@ -55,7 +59,7 @@ public class Entry
         return sleepDuration;
     }
 
-    public void setMedication (boolean m)
+    public void setMedication(boolean m)
     {
         medication = m;
     }
@@ -65,9 +69,15 @@ public class Entry
         return medication;
     }
 
-    public void setmCycleBool(boolean m) {mCycleBool = m;}
+    public void setmCycleBool(boolean m)
+    {
+        mCycleBool = m;
+    }
 
-    public boolean getmCycleBoolean() {return mCycleBool;}
+    public boolean getmCycleBoolean()
+    {
+        return mCycleBool;
+    }
 
     public void setmCycle(int c)
     {
@@ -87,16 +97,6 @@ public class Entry
     public String getNote()
     {
         return note;
-    }
-
-    public void setDate(Date date)
-    {
-        this.date = date;
-    }
-
-    public Date getDate()
-    {
-        return date;
     }
 }
 

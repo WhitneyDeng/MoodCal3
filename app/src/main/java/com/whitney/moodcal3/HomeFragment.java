@@ -19,6 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+//preserved for firebase integration
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +27,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+/**
+ * This program creates the default (calendar) fragment interface for the Home tab
+ *
+ * @author  Whitney Deng
+ * @version 1.0
+ * @since   4-5-2019
+ */
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class HomeFragment extends Fragment
@@ -193,13 +202,21 @@ public class HomeFragment extends Fragment
         return v;
     }
 
-    //returns the string of the current date
+    /**
+     * This method returns the current date in a string
+     *
+     * @return String of the current date
+     */
     private String currentDate()
     {
         return new SimpleDateFormat("dd/MM/yyyy").format(new Date());
     }
 
-    //returns day since last menstruation
+    /**
+     * This method returns the number of day since last first day of menstruation
+     *
+     * @return int of the number of day since last first day of menstruation
+     */
     private int findMCycle()
     {
         if (mCycleCB.isChecked())
@@ -209,7 +226,9 @@ public class HomeFragment extends Fragment
         return entryStorage.getDaySinceLastMenstruation();
     }
 
-    //checks if an entry exists, if it doesn't a new entry is created
+    /**
+     * This method checks if an entry exists, if it doesn't a new entry is created
+     */
     private void checkEntryExistence()
     {
         if (!entryStorage.getEntryStorage().containsKey(date))
@@ -218,7 +237,9 @@ public class HomeFragment extends Fragment
         }
     }
 
-    //displays the entry on the selected day
+    /**
+     * This method displays the entry on the selected day
+     */
     private void displayEntryProfile()
     {
         checkEntryExistence();

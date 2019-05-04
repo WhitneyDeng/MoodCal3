@@ -3,25 +3,22 @@ package com.whitney.moodcal3;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * This program creates the fragment interface for Common Factors tab
+ *
+ * @author  Whitney Deng
+ * @version 1.0
+ * @since   4-5-2019
+ */
 
 public class CommonFactorsFragment extends Fragment
 {
@@ -72,6 +69,7 @@ public class CommonFactorsFragment extends Fragment
                     hashMapInUse = happyFactorsHashMap;
                     commonFactorSourceInUse = commonFactors.getHappyCommonFactors();
                     break;
+
                 case 2: // set textview of sad factors
                     hashMapInUse = sadFactorsHashMap;
                     commonFactorSourceInUse = commonFactors.getSadCommonFactors();
@@ -102,7 +100,13 @@ public class CommonFactorsFragment extends Fragment
         return v;
     }
 
-    //if true returns "taken" else returns "not taken
+    /**
+     * This method corresponds true to "taken" and false to "not taken" (for the medication status)
+     *
+     * @param b the boolean to be assessed
+     *
+     * @return String of the medication status
+     */
     private String medicationStatus(boolean b)
     {
         if (b)
@@ -112,6 +116,11 @@ public class CommonFactorsFragment extends Fragment
         return  "not taken";
     }
 
+    /**
+     * This method sets the entry storage (this was for the firebase integration)
+     *
+     * @param es the entry storage to be assigned
+     */
     public void setEntryStorage(EntryStorage es)
     {
         entryStorage = es;
